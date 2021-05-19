@@ -6,7 +6,7 @@
 #    By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 14:56:28 by maraurel          #+#    #+#              #
-#    Updated: 2021/05/18 15:06:53 by maraurel         ###   ########.fr        #
+#    Updated: 2021/05/19 09:04:22 by maraurel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC = push_swap.c \
 
 CC = clang
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS =
 
 all: $(NAME)
 
@@ -43,9 +43,9 @@ cleanlibft:
 
 re: fclean all
 
-run: re
+run:
 	@clear
-	@./$(NAME) map.cub
+	@./$(NAME) 0 1 2
 
 memory: re
 	@clear
