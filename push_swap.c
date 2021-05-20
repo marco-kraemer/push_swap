@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/20 10:36:06 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/20 10:40:10 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	create_stack(t_stack *stackA, int argc, char *argv[])
 		old = new;
 		i++;
 	}
+	new->next = NULL;
+	stackA->tail = new;
 }
 
 int	main(int argc, char *argv[])
@@ -68,7 +70,7 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	int	i = 0;
-	while (stackA.head->next != stackA.tail + 1)
+	while (stackA.head)
 	{
 		printf("%i\n", stackA.head->num);
 		stackA.head = stackA.head->next;
