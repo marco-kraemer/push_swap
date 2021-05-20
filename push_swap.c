@@ -6,27 +6,57 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/19 16:26:32 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/20 10:36:06 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	create_first_node(t_stack *stackA, char *argv)
+static t_node	*create_first_node(t_stack *stackA, char *argv)
 {
 	t_node	*newNode;
 
 	newNode = malloc(sizeof(t_node));
-	newNode->num = ft_atoi(&argv[1]);
+	newNode->num = ft_atoi(&argv[0]);
 	newNode->next = NULL;
 	stackA->head = newNode;
 	stackA->tail = stackA->head;
+	return (newNode);
+}
+
+static t_node	*create_nodes(char *argv)
+{
+	t_node	*newNode;
+
+	newNode = malloc(sizeof(t_node));
+	newNode->num = ft_atoi(&argv[0]);
+	newNode->next = NULL;
+	return (newNode);
+}
+
+void	add_node_end(t_stack *stackA, t_node *old, t_node *new)
+{
+	old->next = new;
+	new->next = stackA->head;
+	new->prev = old;
 }
 
 void	create_stack(t_stack *stackA, int argc, char *argv[])
 {
+	int		i;
+	t_node	*new;
+	t_node	*old;
+
 	stackA->head = malloc(sizeof(t_node));
-	create_first_node(stackA, argv[1]);
+	old = create_first_node(stackA, argv[1]);
+	i = 2;
+	while (i < argc) 
+	{
+		new = create_nodes(argv[i]);
+		add_node_end(stackA, old, new);
+		old = new;
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -38,12 +68,10 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	int	i = 0;
-	t_node	newNode;
-	newNode.next = stackA.head;
-	while (i < 2)
+	while (stackA.head->next != stackA.tail + 1)
 	{
 		printf("%i\n", stackA.head->num);
-		newNode.next = newNode.next->next;
+		stackA.head = stackA.head->next;
 		i++;
 	}
 }
