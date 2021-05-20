@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/20 11:57:37 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/20 12:18:18 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	solve_3_less(t_stack *stackA, t_stack *stackB, int count)
 	{
 		if (check_order(*stackA, count))
 			return ;
+		swap_a(stackA);
+		return;
 	}
 	if (stackB->head && count == 121231)
 		printf("an");
@@ -62,9 +64,10 @@ int	main(int argc, char *argv[])
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
 	int	i = 0;
+	printf("\nFINAL FORMATION:\n");
 	while (stackA.head)
 	{
-		//printf("%i\n", stackA.head->num);
+		printf("%i\n", stackA.head->num);
 		stackA.head = stackA.head->next;
 		i++;
 	}
