@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/21 12:34:20 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/21 15:13:12 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,27 @@ void	solve_3(t_stack *stackA)
 
 void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 {
+	int	i;
+
 	push_b(stackA, stackB, 0);
 	if (count == 5)
 		push_b(stackA, stackB, 0);
 	solve_3(stackA);
-//	printf("%i e %i\n", stackB->head->num, stackA->tail->num);
-	while (stackB->head->num < stackA->tail->num)
-		rotate_a(stackA, 0);
-	push_a(stackA, stackB, 0);
-	while (check_order(*stackA, count) == 0)
-		rotate_a(stackA, 0);
+	if (stackB->head->num < stackA->head->num)
+		push_a(stackA, stackB, 0);
+	else
+	{
+		i = 0;
+		while (stackB->head->next > stackA->head->next || i != 4)
+		{
+			rotate_a(stackA, 0);
+			i++;
+		}
+		push_a(stackA, stackB, 0);
+	}
+	i = 0;
+//	while (check_order(*stackA, count) == 0)
+//		rotate_a(stackA, 0);
 	if (count == 5)
 	{
 		push_a(stackA, stackB, 0);

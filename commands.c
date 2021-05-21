@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 09:09:57 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/21 11:49:08 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/21 15:27:50 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 void	swap_a(t_stack *stack, int rule)
 {
-	t_node	*tmp;
+	int	n;
 
-	tmp = stack->head;
-	stack->head = stack->head->next;
-	tmp->next = stack->head->next;
-	tmp->prev = stack->head;
-	stack->head->next = tmp;
-	stack->head->prev = NULL;
+	if (!(stack->head) || !(stack->head->next))
+		return ;
+	n = stack->head->num;
+	stack->head->num = stack->head->next->num;
+	stack->head->next->num = n;
 	if (rule == 0)
 		write(1, "sa\n", 3);
 }
 
 void	swap_b(t_stack *stack, int rule)
 {
-	t_node	*tmp;
+	int	n;
 
-	tmp = stack->head;
-	stack->head = stack->head->next;
-	tmp->next = stack->head->next;
-	tmp->prev = stack->head;
-	stack->head->next = tmp;
-	stack->head->prev = NULL;
+	if (!(stack->head) || !(stack->head->next))
+		return ;
+	n = stack->head->num;
+	stack->head->num = stack->head->next->num;
+	stack->head->next->num = n;
 	if (rule == 0)
 		write(1, "sb\n", 3);
 }
@@ -120,12 +118,14 @@ void	rotate_ab(t_stack *stackA, t_stack *stackB)
 
 void	reverse_rotate_a(t_stack *stack, int rule)
 {
+	if (stack->head == NULL || stack->tail == NULL)
+		return ;
 	stack->head->prev = stack->tail;
 	stack->tail->next = stack->head;
-	stack->tail = stack->tail->prev;
-	stack->head = stack->head->prev;
-	stack->head->prev = NULL;
+	stack->head = stack->tail;
+	stack->tail =stack->tail->prev;
 	stack->tail->next = NULL;
+	stack->head->prev = NULL;
 	if (rule == 0)
 		write(1, "rra\n", 4);
 }
