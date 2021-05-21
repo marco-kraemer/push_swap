@@ -16,6 +16,7 @@ typedef struct s_stack {
 
 void	create_stack(t_stack *stackA, int argc, char *argv[]);
 
-void	swap_a(t_stack *stackA);
+void	swap(t_stack *stack);
+void	push_a(t_stack *stackA, t_stack *stackB);
 
 #endif
