@@ -16,7 +16,16 @@ typedef struct s_stack {
 
 void	create_stack(t_stack *stackA, int argc, char *argv[]);
 
-void	swap(t_stack *stack);
-void	push_a(t_stack *stackA, t_stack *stackB);
+void	swap_a(t_stack *stack, int rule);
+void	swap_b(t_stack *stack, int rule);
+void	swap_ab(t_stack *stackA, t_stack *stackB);
+void	push_a(t_stack *stackA, t_stack *stackB, int rule);
+void	push_b(t_stack *stackA, t_stack *stackB, int rule);
+void	rotate_a(t_stack *stack, int rule);
+void	rotate_b(t_stack *stack, int rule);
+void	rotate_ab(t_stack *stackA, t_stack *stackB);
+void	reverse_rotate_a(t_stack *stack, int rule);
+void	reverse_rotate_b(t_stack *stack, int rule);
+void	reverse_rotate_ab(t_stack *stackA, t_stack *stackB);
 
 #endif

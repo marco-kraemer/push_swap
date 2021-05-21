@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/21 09:15:22 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/21 10:31:58 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	solve_3_less(t_stack *stackA, t_stack *stackB, int count)
 	{
 		if (check_order(*stackA, count))
 			return ;
-		push_b(stackA, stackB);
+		swap_a(stackA, 0);
 		return;
 	}
 	if (stackB->head && count == 121231)
