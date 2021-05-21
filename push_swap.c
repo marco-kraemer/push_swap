@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/21 15:13:12 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/21 16:09:51 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	solve_2(t_stack *stackA, int count)
 
 int	compare_3(t_node *node)
 {
-	// TOP TO MIDDLE, TOP TO BOTTOM, MIDDLE TO BOTTOM
 	if (node->num > node->next->num && node->num < node->next->next->num && node->next->num < node->next->next->num)
 		return (1);
 	if (node->num > node->next->num && node->num > node->next->next->num && node->next->num > node->next->next->num)
@@ -92,22 +91,19 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 	else
 	{
 		i = 0;
-		while (stackB->head->next > stackA->head->next || i != 4)
+		while (check_order(*stackA, count) == 0)
 		{
 			rotate_a(stackA, 0);
-			i++;
+			if (stackB->head->num < stackA->head->num || i++ == 2)
+			{
+				push_a(stackA, stackB, 0);
+				break ;
+			}
 		}
-		push_a(stackA, stackB, 0);
 	}
-	i = 0;
-//	while (check_order(*stackA, count) == 0)
-//		rotate_a(stackA, 0);
-	if (count == 5)
-	{
-		push_a(stackA, stackB, 0);
-		if (check_order(*stackA, count) == 0)
-			rotate_a(stackA, 0);
-	}
+	if (check_order(*stackA, count) == 0)
+		return ;
+	solve_5(stackA, stackB, count);
 }
 
 void	solve(int count, t_stack *stackA, t_stack *stackB)
