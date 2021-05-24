@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/21 16:09:51 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/24 10:05:02 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,32 +78,50 @@ void	solve_3(t_stack *stackA)
 		reverse_rotate_a(stackA, 0);
 }
 
+int	biggest_num(t_stack stackA, t_stack stackB)
+{
+	int	num;
+
+	num = stackB.head->num;
+	while(stackA.head)
+	{
+		if (stackA.head->num > num)
+			return (0);
+		stackA.head = stackA.head->next;
+	}
+	return (1);
+}
+
 void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 {
-	int	i;
+	static int	i;
+	static int	j;
 
-	push_b(stackA, stackB, 0);
-	if (count == 5)
-		push_b(stackA, stackB, 0);
-	solve_3(stackA);
-	if (stackB->head->num < stackA->head->num)
-		push_a(stackA, stackB, 0);
-	else
+	while (i < count - 3)
 	{
-		i = 0;
-		while (check_order(*stackA, count) == 0)
-		{
-			rotate_a(stackA, 0);
-			if (stackB->head->num < stackA->head->num || i++ == 2)
-			{
-				push_a(stackA, stackB, 0);
-				break ;
-			}
-		}
+		push_b(stackA, stackB, 0);
+		i++;
 	}
-	if (check_order(*stackA, count) == 0)
-		return ;
-	solve_5(stackA, stackB, count);
+	solve_3(stackA);
+	while (1)
+	{
+		if (stackB->head->num < stackA->head->num
+			|| biggest_num(*stackA, *stackB) == 1)
+		{
+			push_a(stackA, stackB, 0);
+			break ;
+		}
+		rotate_a(stackA, 0);
+	}
+	if (count == 5 && j == 0)
+	{
+		j++;
+		while (check_order(*stackA, count - 1) == 0)
+			rotate_a(stackA, 0);
+		solve_5(stackA, stackB, count);
+	}
+	while (check_order(*stackA, count) == 0)
+		rotate_a(stackA, 0);
 }
 
 void	solve(int count, t_stack *stackA, t_stack *stackB)
