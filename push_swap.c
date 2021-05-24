@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 11:23:24 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/24 12:52:27 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,49 @@ int	smaller_num(t_stack stackA)
 	return (1);
 }
 
+int	stack_size(t_stack stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack.head)
+	{
+		stack.head = stack.head->next;
+		i++;
+	}
+	return (i);
+}
+
+int	find_next_num(t_stack stackA)
+{
+	int	ret;
+
+	ret = stackA.head->num;
+	while (stackA.head)
+	{
+		if (ret > stackA.head->num)
+			ret = stackA.head->num;
+		stackA.head = stackA.head->next;
+	}
+	return (ret);
+}
+
+void	solve_100(t_stack *stackA, t_stack *stackB, int count)
+{
+	int		chunk;
+	int		num;
+	static int	count;
+
+	chunk = count / 10;
+	count = 0;
+
+	num = find_next_num(*stackA);
+	// PUT NUM ON TOP OF STACKA
+	while (num != stackA->head->num)
+		rotate_a(stackA, 0);
+}
+
+/*
 void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 {
 	if (check_order(*stackA, count))
@@ -56,6 +99,7 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 	rotate_a(stackA, 0);
 	solve_100(stackA, stackB, count);
 }
+*/
 
 void	solve(int count, t_stack *stackA, t_stack *stackB)
 {
