@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 15:45:31 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:50:47 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,10 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 			num = find_next_num(*stackA, chunk, chunk_size);
 			// PUT NUM ON TOP OF STACKA
 			while (num != stackA->head->num)
+			{			
 				rotate_a(stackA, 0);
+				printf("oi\n");
+			}
 			correct_location(num, stackB);
 			push_b(stackA, stackB, 0);
 			i++;
