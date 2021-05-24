@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 15:53:46 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:54:12 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 		}
 		stackA.head = stackA.head->next;
 	}
-	return (333);
+	return (*(chunk + i));
 }
 
 int	*get_chunk(t_stack stack, int chunk_size)
