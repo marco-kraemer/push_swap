@@ -6,7 +6,7 @@
 #    By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 14:56:28 by maraurel          #+#    #+#              #
-#    Updated: 2021/05/24 11:00:26 by maraurel         ###   ########.fr        #
+#    Updated: 2021/05/24 14:23:21 by maraurel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = push_swap.c \
 
 CC = clang
 
-FLAGS =
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
