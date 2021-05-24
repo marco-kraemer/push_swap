@@ -6,7 +6,7 @@
 #    By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 14:56:28 by maraurel          #+#    #+#              #
-#    Updated: 2021/05/20 11:48:00 by maraurel         ###   ########.fr        #
+#    Updated: 2021/05/24 11:00:26 by maraurel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ NAME = push_swap
 
 SRC = push_swap.c \
 	commands.c \
-	linked_list.c
+	linked_list.c \
+	solve1.c
 	
 
 CC = clang
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS =
 
 all: $(NAME)
 

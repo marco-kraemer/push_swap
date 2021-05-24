@@ -28,4 +28,11 @@ void	reverse_rotate_a(t_stack *stack, int rule);
 void	reverse_rotate_b(t_stack *stack, int rule);
 void	reverse_rotate_ab(t_stack *stackA, t_stack *stackB);
 
+void	solve_2(t_stack *stackA, int count);
+int	compare_3(t_node *node);
+void	solve_3(t_stack *stackA);
+int	biggest_num(t_stack stackA, t_stack stackB);
+void	solve_5(t_stack *stackA, t_stack *stackB, int count);
+int	check_order(t_stack stackA, int count);
+
 #endif
