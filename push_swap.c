@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 15:54:12 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/24 16:10:17 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,6 @@ int	stack_size(t_stack stack)
 		i++;
 	}
 	return (i);
-}
-
-int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
-{
-	int	i;
-
-	while (stackA.head)
-	{
-		i = 0;
-		while (i < chunk_size)
-		{
-			if (stackA.head->num == *(chunk + i))
-				return (*(chunk + i));
-			i++;
-		}
-		stackA.head = stackA.head->next;
-	}
-	return (*(chunk + i));
 }
 
 int	*get_chunk(t_stack stack, int chunk_size)
@@ -163,6 +145,25 @@ void	correct_location(int num, t_stack *stackB)
 	}
 }
 
+int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
+{
+	int	i;
+	i = 0;
+
+	while (stackA.head)
+	{
+		i = 0;
+		while (i < chunk_size)
+		{
+			if (stackA.head->num == *(chunk + i))
+				return (*(chunk + i));
+			i++;
+		}
+		stackA.head = stackA.head->next;
+	}
+	return (8657125);
+}
+
 void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 {
 	int		chunk_size;
@@ -179,10 +180,11 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 		while (i < chunk_size)
 		{
 			num = find_next_num(*stackA, chunk, chunk_size);
+			if (num == 8657125)
+				break ;
 			// PUT NUM ON TOP OF STACKA
 			while (num != stackA->head->num)
 			{
-				printf("%i\n", num);
 				rotate_a(stackA, 0);
 			}
 			correct_location(num, stackB);
