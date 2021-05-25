@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 12:25:27 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:31:17 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 	int		num;
 	static int	i;
 
-	chunk_size = count / 5;
+	chunk_size = count / 11;
 	i = 0;
 	while (stack_size(*stackA) != 0)
 	{
