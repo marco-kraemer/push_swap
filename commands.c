@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 09:09:57 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 16:06:59 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:59:29 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	reverse_rotate_b(t_stack *stack, int rule)
 	stack->head->prev = NULL;
 	stack->tail->next = NULL;
 	if (rule == 0)
-		write(1, "rra\n", 4);
+		write(1, "rrb\n", 4);
 }
 
 void	reverse_rotate_ab(t_stack *stackA, t_stack *stackB)
