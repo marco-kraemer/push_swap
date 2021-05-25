@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 12:02:32 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:25:27 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,31 +165,21 @@ int	*get_chunk(t_stack stack, int chunk_size)
 
 int	correct_rotation(int num, t_stack stackB, int stack_size)
 {
-	int	ret;
 	int	dist_start;
 	int	dist_end;
-	t_stack	tmp;
 
-	tmp = stackB;
-	ret = -2147483648;
-	while (tmp.head)
-	{
-		if (tmp.head->num < num && tmp.head->num > ret)
-			ret = tmp.head->num;
-		tmp.head = tmp.head->next;
-	}
 	dist_start = 0;
 	while (stackB.head)
 	{
-		dist_start++;
 		if (stackB.head->num == num)
 			break ;
+		dist_start++;
 		stackB.head = stackB.head->next;
 	}
 	dist_end = dist_start - stack_size;
 	if (dist_end < 0)
 		dist_end = dist_end * (-1);
-	if (dist_start > dist_end)
+	if (dist_start < dist_end)
 		return (1);
 	return (0);
 }
@@ -210,9 +200,9 @@ void	move_biggest_top(t_stack *stack)
 	while(stack->head->num != num)
 	{
 		if (correct_rotation(num, *stack, stack_size(*stack)) == 1)
-			reverse_rotate_b(stack, 0);
-		else
 			rotate_b(stack, 0);
+		else
+			reverse_rotate_b(stack, 0);
 	}
 }
 
@@ -223,7 +213,7 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 	int		num;
 	static int	i;
 
-	chunk_size = count / 2;
+	chunk_size = count / 5;
 	i = 0;
 	while (stack_size(*stackA) != 0)
 	{
@@ -236,7 +226,7 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 				break ;
 			while (num != stackA->head->num)
 			{
-				if (correct_rotation(num, *stackB, stack_size(*stackA)) == 1)
+				if (correct_rotation(num, *stackA, stack_size(*stackA)) == 1)
 					rotate_a(stackA, 0);
 				else
 					reverse_rotate_a(stackA, 0);
@@ -274,7 +264,7 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
-//	return (1);
+	return (1);
 	int	i = 0;
 	printf("\nFINAL FORMATION:\n");
 	while (stackA.head)
