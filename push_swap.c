@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 12:01:48 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:02:32 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,7 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
-	return (1);
+//	return (1);
 	int	i = 0;
 	printf("\nFINAL FORMATION:\n");
 	while (stackA.head)
