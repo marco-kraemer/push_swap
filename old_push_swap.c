@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 11:12:40 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:11:14 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,51 @@ void	move_biggest_top(t_stack *stack)
 
 void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 {
-	
+	int		chunk_size;
+	int		*chunk;
+	int		num;
+	static int	i;
+
+	chunk_size = count / 10;
+	i = 0;
+	while (stack_size(*stackA) != 0)
+	{
+		chunk = get_chunk(*stackA, chunk_size);
+		i = 0;
+		while (i < chunk_size)
+		{
+			num = find_next_num(*stackA, chunk, chunk_size);
+			if (num == 8657125)
+				break ;
+			// PUT NUM ON TOP OF STACKA
+			while (num != stackA->head->num)
+			{
+				rotate_a(stackA, 0);
+			}
+			correct_location(num, stackB);
+			push_b(stackA, stackB, 0);
+			i++;
+		}
+		free (chunk);
+	}
+	while (stackB->head)
+	{
+		move_biggest_top(stackB);
+		push_a(stackA, stackB, 0);
+	}
 }
+
+/*
+void	solve_100(t_stack *stackA, t_stack *stackB, int count)
+{
+	if (check_order(*stackA, count))
+		return ;
+	if (stackA->head->num > stackA->head->next->num && smaller_num(*stackA) == 0)
+		swap_a(stackA, 0);
+	rotate_a(stackA, 0);
+	solve_100(stackA, stackB, count);
+}
+*/
 
 void	solve(int count, t_stack *stackA, t_stack *stackB)
 {
