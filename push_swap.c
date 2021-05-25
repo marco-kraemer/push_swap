@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 08:48:55 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 10:24:55 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,31 @@ int	smaller(int num, t_stack stackB)
 	return (1);
 }
 
+void	correct_rotation(int num, t_stack stackB)
+{
+	int	ret;
+	int	dist_start;
+	int	dist_end;
+	t_stack	tmp;
+
+	tmp = stackB;
+	ret = -2147483648;
+	while (tmp.head)
+	{
+		if (tmp.head->num < num && tmp.head->num > ret)
+			ret = tmp.head->num;
+		tmp.head = tmp.head->next;
+	}
+	dist_start = 0;
+	while (stackB.head)
+	{
+		dist_start++;
+		if (stackB.head->num == num)
+			break ;
+		stackB.head = stackB.head->next;
+	}
+}
+
 void	correct_location(int num, t_stack *stackB)
 {
 	t_stack	tmp;
@@ -140,6 +165,7 @@ void	correct_location(int num, t_stack *stackB)
 		{
 			if (num < stackB->head->num && num > stackB->tail->num)
 				break ;
+			correct_rotation(num, *stackB);
 			rotate_b(stackB, 0);
 		}
 	}
