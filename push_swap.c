@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 16:10:17 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 08:36:41 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,10 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 		}
 		free (chunk);
 	}
+	while (stackB->head)
+	{
+		push_a(stackA, stackB, 0);
+	}
 }
 
 /*
@@ -228,12 +232,13 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
+	//return (1);
 	int	i = 0;
 	printf("\nFINAL FORMATION:\n");
-	while (stackB.head)
+	while (stackA.head)
 	{
-		printf("%i\n", stackB.head->num);
-		stackB.head = stackB.head->next;
+		printf("%i\n", stackA.head->num);
+		stackA.head = stackA.head->next;
 		i++;
 	}
 }
