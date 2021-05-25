@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 11:56:58 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:58:04 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,10 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 				if (correct_rotation(num, *stackB, stack_size(*stackA)) == 1)
 					rotate_a(stackA, 0);
 				else
+				{
+					printf("aaaaaa:");
 					reverse_rotate_a(stackA, 0);
+				}
 			}
 			push_b(stackA, stackB, 0);
 			i++;
