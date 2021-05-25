@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 11:12:40 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:56:58 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,38 +60,6 @@ int	stack_size(t_stack stack)
 	return (i);
 }
 
-int	*get_chunk(t_stack stack, int chunk_size)
-{
-	int	*chunk;
-	int	num;
-	int	old_num;
-	int	i;
-	t_stack	tmp;
-
-	tmp = stack;
-	i = 0;
-	chunk = malloc(10 * sizeof(int));
-	num = stack.head->num;
-	old_num = 0;
-	while (i <= chunk_size)
-	{
-		tmp = stack;
-		num = stack.head->num;
-		while (tmp.head->next)
-		{
-			if (num > tmp.head->num && tmp.head->num > old_num)
-			{
-				num = tmp.head->num;
-			}
-			tmp.head = tmp.head->next;
-		}
-		old_num = num;
-		*(chunk + i) = num;
-		i++;
-	}
-	return (chunk);
-}
-
 int	bigger(int num, t_stack stackB)
 {
 	if (stackB.head == NULL)
@@ -116,33 +84,6 @@ int	smaller(int num, t_stack stackB)
 		stackB.head = stackB.head->next;
 	}
 	return (1);
-}
-
-void	correct_location(int num, t_stack *stackB)
-{
-	t_stack	tmp;
-
-	tmp = *stackB;
-	if (stackB->head == NULL || stack_size(*stackB) <= 2)
-		return ;
-	if (smaller(num, *stackB) || bigger(num, *stackB))
-	{
-		while (1)
-		{
-			if (check_order(*stackB, stack_size(*stackB)))
-				break ;
-			rotate_b(stackB, 0);
-		}
-	}
-	else
-	{
-		while (1)
-		{
-			if (num < stackB->head->num && num > stackB->tail->num)
-				break ;
-			rotate_b(stackB, 0);
-		}
-	}
 }
 
 int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
@@ -181,9 +122,131 @@ void	move_biggest_top(t_stack *stack)
 		reverse_rotate_b(stack, 0);
 }
 
+void	correct_location(int num, t_stack *stack)
+{
+	t_stack	tmp;
+
+	tmp = *stack;
+	if (stack->head == NULL || stack_size(*stack) <= 2)
+		return ;
+	if (smaller(num, *stack) || bigger(num, *stack))
+	{
+		while (1)
+		{
+			if (check_order(*stack, stack_size(*stack)))
+				break ;
+			rotate_b(stack, 0);
+		}
+	}
+	else
+	{
+		while (1)
+		{
+			if (num < stack->head->num && num > stack->tail->num)
+				break ;
+				rotate_b(stack, 0);
+		}
+	}
+}
+
+int	*get_chunk(t_stack stack, int chunk_size)
+{
+	int	*chunk;
+	int	num;
+	int	old_num;
+	int	i;
+	t_stack	tmp;
+
+	tmp = stack;
+	i = 0;
+	chunk = malloc(10 * sizeof(int));
+	old_num = 0;
+	while (i <= chunk_size)
+	{
+		tmp = stack;
+		num = 2147483647;
+		while (tmp.head)
+		{
+			if (tmp.head->num < num && tmp.head->num > old_num)
+			{
+				num = tmp.head->num;
+			}
+			tmp.head = tmp.head->next;
+		}
+		old_num = num;
+		*(chunk + i) = num;
+		i++;
+	}
+	return (chunk);
+}
+
+int	correct_rotation(int num, t_stack stackB, int stack_size)
+{
+	int	ret;
+	int	dist_start;
+	int	dist_end;
+	t_stack	tmp;
+
+	tmp = stackB;
+	ret = -2147483648;
+	while (tmp.head)
+	{
+		if (tmp.head->num < num && tmp.head->num > ret)
+			ret = tmp.head->num;
+		tmp.head = tmp.head->next;
+	}
+	dist_start = 0;
+	while (stackB.head)
+	{
+		dist_start++;
+		if (stackB.head->num == num)
+			break ;
+		stackB.head = stackB.head->next;
+	}
+	dist_end = dist_start - stack_size;
+	if (dist_end < 0)
+		dist_end = dist_end * (-1);
+	printf("%i e %i\n", dist_end, dist_start);
+	if (dist_start > dist_end)
+		return (1);
+	return (0);
+}
+
 void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 {
-	
+	int		chunk_size;
+	int		*chunk;
+	int		num;
+	static int	i;
+
+	chunk_size = count / 2;
+	i = 0;
+	while (stack_size(*stackA) != 0)
+	{
+		chunk = get_chunk(*stackA, chunk_size);
+		i = 0;
+		while (i < chunk_size)
+		{
+			num = find_next_num(*stackA, chunk, chunk_size);
+			if (num == 8657125)
+				break ;
+			while (num != stackA->head->num)
+			{
+				if (correct_rotation(num, *stackB, stack_size(*stackA)) == 1)
+					rotate_a(stackA, 0);
+				else
+					reverse_rotate_a(stackA, 0);
+			}
+			push_b(stackA, stackB, 0);
+			i++;
+		}
+		free (chunk);
+	}
+	while (stackB->head)
+	{
+		move_biggest_top(stackB);
+		push_a(stackA, stackB, 0);
+	}
 }
 
 void	solve(int count, t_stack *stackA, t_stack *stackB)
