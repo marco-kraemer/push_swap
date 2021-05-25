@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 08:38:53 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 08:39:44 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,10 +195,10 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 	}
 	while (bigger(stackB->head->num , *stackB))
 		rotate_b(stackB, 0);
-	while (stackB->head)
-	{
-		push_a(stackA, stackB, 0);
-	}
+//	while (stackB->head)
+//	{
+//		push_a(stackA, stackB, 0);
+//	}
 }
 
 /*
@@ -237,10 +237,10 @@ int	main(int argc, char *argv[])
 	//return (1);
 	int	i = 0;
 	printf("\nFINAL FORMATION:\n");
-	while (stackA.head)
+	while (stackB.head)
 	{
-		printf("%i\n", stackA.head->num);
-		stackA.head = stackA.head->next;
+		printf("%i\n", stackB.head->num);
+		stackB.head = stackB.head->next;
 		i++;
 	}
 }
