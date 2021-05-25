@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 08:39:44 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/25 08:48:55 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,23 @@ int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 	return (8657125);
 }
 
+void	move_biggest_top(t_stack *stack)
+{
+	int	num;
+	t_stack tmp;
+
+	tmp = *stack;
+	num = tmp.head->num;
+	while (tmp.head)
+	{
+		if (tmp.head->num > num)
+			num = tmp.head->num;
+		tmp.head = tmp.head->next;
+	}
+	while(stack->head->num != num)
+		reverse_rotate_b(stack, 0);
+}
+
 void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 {
 	int		chunk_size;
@@ -193,12 +210,11 @@ void	solve_100(t_stack *stackA, t_stack *stackB, int count)
 		}
 		free (chunk);
 	}
-	while (bigger(stackB->head->num , *stackB))
-		rotate_b(stackB, 0);
-//	while (stackB->head)
-//	{
-//		push_a(stackA, stackB, 0);
-//	}
+	while (stackB->head)
+	{
+		move_biggest_top(stackB);
+		push_a(stackA, stackB, 0);
+	}
 }
 
 /*
@@ -237,10 +253,10 @@ int	main(int argc, char *argv[])
 	//return (1);
 	int	i = 0;
 	printf("\nFINAL FORMATION:\n");
-	while (stackB.head)
+	while (stackA.head)
 	{
-		printf("%i\n", stackB.head->num);
-		stackB.head = stackB.head->next;
+		printf("%i\n", stackA.head->num);
+		stackA.head = stackA.head->next;
 		i++;
 	}
 }
