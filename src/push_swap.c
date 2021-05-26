@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:28:55 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:36:20 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	stack_size(t_stack stack)
 int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 {
 	int	i;
-	i = 0;
 
+	i = 0;
 	while (stackA.head)
 	{
 		i = 0;
@@ -67,10 +67,10 @@ int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 
 int	*get_chunk(t_stack stack, int chunk_size)
 {
-	int	*chunk;
-	int	num;
-	int	old_num;
-	int	i;
+	int		*chunk;
+	int		num;
+	int		old_num;
+	int		i;
 	t_stack	tmp;
 
 	tmp = stack;
@@ -84,9 +84,7 @@ int	*get_chunk(t_stack stack, int chunk_size)
 		while (tmp.head)
 		{
 			if (tmp.head->num < num && tmp.head->num > old_num)
-			{
 				num = tmp.head->num;
-			}
 			tmp.head = tmp.head->next;
 		}
 		old_num = num;
@@ -119,8 +117,8 @@ int	correct_rotation(int num, t_stack stackB, int stack_size)
 
 void	move_biggest_top(t_stack *stack)
 {
-	int	num;
-	t_stack tmp;
+	int		num;
+	t_stack	tmp;
 
 	tmp = *stack;
 	num = tmp.head->num;
@@ -130,7 +128,7 @@ void	move_biggest_top(t_stack *stack)
 			num = tmp.head->num;
 		tmp.head = tmp.head->next;
 	}
-	while(stack->head->num != num)
+	while (stack->head->num != num)
 	{
 		if (correct_rotation(num, *stack, stack_size(*stack)) == 1)
 			rotate_b(stack, 0);
@@ -141,8 +139,8 @@ void	move_biggest_top(t_stack *stack)
 
 void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
 {
-	int		*chunk;
-	int		num;
+	int			*chunk;
+	int			num;
 	static int	i;
 
 	i = 0;
@@ -186,7 +184,6 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_else(stackA, stackB, count / 5);
 	else
 		solve_else(stackA, stackB, count / 11);
-
 }
 
 int	main(int argc, char *argv[])

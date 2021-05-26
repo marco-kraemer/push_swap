@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 09:09:57 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:27:27 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:31:29 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rotate_a(t_stack *stack, int rule)
 	stack->head = stack->head->next;
 	stack->head->prev = NULL;
 	stack->tail = stack->tail->next;
-	stack->tail->next = NULL;;
+	stack->tail->next = NULL;
 	if (rule == 0)
 		write(1, "ra\n", 3);
 }

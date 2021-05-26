@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:19:08 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 10:10:00 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:32:31 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	create_stack(t_stack *stackA, int argc, char *argv[])
 
 	old = create_first_node(stackA, argv[1]);
 	i = 2;
-	while (i < argc) 
+	while (i < argc)
 	{
 		new = create_nodes(argv[i]);
 		add_node_end(stackA, old, new);

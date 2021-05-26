@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:51:33 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:22:49 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:37:29 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ void	solve_2(t_stack *stackA, int count)
 
 int	compare_3(t_node *node)
 {
-	if (node->num > node->next->num && node->num < node->next->next->num && node->next->num < node->next->next->num)
+	if (node->num > node->next->num && node->num < node->next->next->num
+		&& node->next->num < node->next->next->num)
 		return (1);
-	if (node->num > node->next->num && node->num > node->next->next->num && node->next->num > node->next->next->num)
+	if (node->num > node->next->num && node->num > node->next->next->num
+		&& node->next->num > node->next->next->num)
 		return (2);
-	if (node->num > node->next->num && node->num > node->next->next->num && node->next->num < node->next->next->num)
+	if (node->num > node->next->num && node->num > node->next->next->num
+		&& node->next->num < node->next->next->num)
 		return (3);
-	if (node->num < node->next->num && node->num < node->next->next->num && node->next->num > node->next->next->num)
+	if (node->num < node->next->num && node->num < node->next->next->num
+		&& node->next->num > node->next->next->num)
 		return (4);
-	if (node->num < node->next->num && node->num > node->next->next->num && node->next->num > node->next->next->num)
+	if (node->num < node->next->num && node->num > node->next->next->num
+		&& node->next->num > node->next->next->num)
 		return (5);
 	return (0);
 }
@@ -38,7 +43,8 @@ void	solve_3(t_stack *stackA)
 {
 	int	c;
 
-	if (check_order(*stackA, stack_size(*stackA)) == 1 || stack_size(*stackA) > 3)
+	if (check_order(*stackA, stack_size(*stackA)) == 1
+		|| stack_size(*stackA) > 3)
 		return ;
 	c = compare_3(stackA->head);
 	if (c == 1)
@@ -64,7 +70,7 @@ int	biggest_num(t_stack stackA, t_stack stackB)
 	int	num;
 
 	num = stackB.head->num;
-	while(stackA.head)
+	while (stackA.head)
 	{
 		if (stackA.head->num > num)
 			return (0);
