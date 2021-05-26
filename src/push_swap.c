@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 10:10:06 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 12:15:57 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,6 @@ int	stack_size(t_stack stack)
 	return (i);
 }
 
-int	bigger(int num, t_stack stackB)
-{
-	if (stackB.head == NULL)
-		return (0);
-	while (stackB.head)
-	{
-		if (stackB.head->num > num)
-			return (0);
-		stackB.head = stackB.head->next;
-	}
-	return (1);
-}
-
-int	smaller(int num, t_stack stackB)
-{
-	if (stackB.head == NULL)
-		return (0);
-	while (stackB.head)
-	{
-		if (stackB.head->num < num)
-			return (0);
-		stackB.head = stackB.head->next;
-	}
-	return (1);
-}
-
 int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 {
 	int	i;
@@ -103,33 +77,6 @@ int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 		stackA.head = stackA.head->next;
 	}
 	return (8657125);
-}
-
-void	correct_location(int num, t_stack *stack)
-{
-	t_stack	tmp;
-
-	tmp = *stack;
-	if (stack->head == NULL || stack_size(*stack) <= 2)
-		return ;
-	if (smaller(num, *stack) || bigger(num, *stack))
-	{
-		while (1)
-		{
-			if (check_order(*stack, stack_size(*stack)))
-				break ;
-			rotate_b(stack, 0);
-		}
-	}
-	else
-	{
-		while (1)
-		{
-			if (num < stack->head->num && num > stack->tail->num)
-				break ;
-				rotate_b(stack, 0);
-		}
-	}
 }
 
 int	*get_chunk(t_stack stack, int chunk_size)
@@ -249,8 +196,11 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_3(stackA);
 	else if (count <= 5)
 		solve_5(stackA, stackB, count);
+	else if (count <= 100)
+		solve_else(stackA, stackB, count / 5);
 	else
 		solve_else(stackA, stackB, count / 11);
+
 }
 
 int	main(int argc, char *argv[])
@@ -262,10 +212,10 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
-//	printf("\nFINAL FORMATION:\n");
+	printf("\nFINAL FORMATION:\n");
 	while (stackA.head)
 	{
-//		printf("%i\n", stackA.head->num);
+		printf("%i\n", stackA.head->num);
 		free(stackA.head);
 		stackA.head = stackA.head->next;
 	}
