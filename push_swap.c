@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 12:31:17 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 09:01:37 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,14 +206,12 @@ void	move_biggest_top(t_stack *stack)
 	}
 }
 
-void	solve_100(t_stack *stackA, t_stack *stackB, int count)
+void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
 {
-	int		chunk_size;
 	int		*chunk;
 	int		num;
 	static int	i;
 
-	chunk_size = count / 11;
 	i = 0;
 	while (stack_size(*stackA) != 0)
 	{
@@ -251,8 +249,10 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_3(stackA);
 	else if (count <= 5)
 		solve_5(stackA, stackB, count);
+	else if (count <= 100)
+		solve_else(stackA, stackB, count / 5);
 	else
-		solve_100(stackA, stackB, count);
+		solve_else(stackA, stackB, count / 11);
 }
 
 int	main(int argc, char *argv[])

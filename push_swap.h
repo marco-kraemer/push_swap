@@ -1,7 +1,8 @@
 #ifndef PUSH_SWAP_H
 # define CUB3D_H
 # include <stdio.h>
-# include "libft/libft.h"
+# include <unistd.h>
+#include <stdlib.h>
 
 typedef	struct s_node {
 	int		num;
@@ -34,5 +35,7 @@ void	solve_3(t_stack *stackA);
 int	biggest_num(t_stack stackA, t_stack stackB);
 void	solve_5(t_stack *stackA, t_stack *stackB, int count);
 int	check_order(t_stack stackA, int count);
+
+int		ft_atoi(const char *nptr);
 
 #endif
