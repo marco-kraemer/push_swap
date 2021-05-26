@@ -6,11 +6,11 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:51:33 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/24 10:52:15 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 10:10:22 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	solve_2(t_stack *stackA, int count)
 {

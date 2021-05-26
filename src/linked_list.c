@@ -6,11 +6,11 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:19:08 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 09:30:50 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 10:10:00 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static t_node	*create_first_node(t_stack *stackA, char *argv)
 {

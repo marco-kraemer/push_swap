@@ -6,11 +6,11 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 09:30:32 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 10:10:06 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	check_order(t_stack stackA, int count)
 {
@@ -249,8 +249,6 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_3(stackA);
 	else if (count <= 5)
 		solve_5(stackA, stackB, count);
-	else if (count <= 100)
-		solve_else(stackA, stackB, count / 5);
 	else
 		solve_else(stackA, stackB, count / 11);
 }
@@ -264,10 +262,10 @@ int	main(int argc, char *argv[])
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
-	//printf("\nFINAL FORMATION:\n");
+//	printf("\nFINAL FORMATION:\n");
 	while (stackA.head)
 	{
-	//	printf("%i\n", stackA.head->num);
+//		printf("%i\n", stackA.head->num);
 		free(stackA.head);
 		stackA.head = stackA.head->next;
 	}

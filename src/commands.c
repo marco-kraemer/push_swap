@@ -6,11 +6,11 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 09:09:57 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/25 11:59:29 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 10:09:52 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	swap_a(t_stack *stack, int rule)
 {
