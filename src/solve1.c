@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:51:33 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 12:30:02 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:11:39 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,6 @@ int	biggest_num(t_stack stackA, t_stack stackB)
 	return (1);
 }
 
-int	find_num(int num, t_stack stackA)
-{
-	// PEGAR NÚMERO MENOR MAIS PROXIMO DE NUM
-	int	ret;
-
-	ret = -2147483648;
-	while (stackA.head)
-	{
-		if (stackA.head->num < num && stackA.head->num > ret)
-			ret = stackA.head->num;
-		stackA.head = stackA.head->next;
-	}
-	return (ret);
-}
-
 int	get_minimun_value(t_stack stackA)
 {
 	int	ret;
@@ -102,6 +87,68 @@ int	get_minimun_value(t_stack stackA)
 	return (ret);
 }
 
+int	find_num(int num, t_stack stackA)
+{
+	// PEGAR NÚMERO MAIOR MAIS PROXIMO DE NUM
+	int	ret;
+
+	ret = 2147483647;
+	while (stackA.head)
+	{
+		if (stackA.head->num > num && stackA.head->num < ret)
+			ret = stackA.head->num;
+		stackA.head = stackA.head->next;
+	}
+	return (ret);
+}
+
+void	solve_5(t_stack *stackA, t_stack *stackB, int count)
+{
+	int	i;
+	int	num;
+
+	i = 0;
+	while (i < count - 3)
+	{
+		push_b(stackA, stackB, 0);
+		i++;
+	}
+	solve_3(stackA);
+	i = 0;
+	while (i < count -3)
+	{
+		if (biggest_num(*stackA, *stackB))
+			push_a(stackA, stackB, 0);
+		else
+		{
+			num = find_num(stackB->head->num, *stackA); // MENOR NÚMERO MAIOR QUE STACKB->HEAD->NUM (NÚMERO Q DEVE FICAR NO TOPO DE STACK A)
+			printf("NUM: %i\n", num);
+			while (num != stackA->head->num)
+				rotate_a(stackA, 0);
+			push_a(stackA, stackB, 0);
+		}
+		i++;
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 {
 	static int	i;
@@ -155,3 +202,4 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 	while (check_order(*stackA, count) == 0)
 		rotate_a(stackA, 0);
 }
+*/
