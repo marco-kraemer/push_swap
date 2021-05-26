@@ -37,7 +37,8 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count);
 int	check_order(t_stack stackA, int count);
 
 int		correct_rotation(int num, t_stack stackB, int stack_size);
-int	stack_size(t_stack stack);
+int		stack_size(t_stack stack);
 int		ft_atoi(const char *nptr);
+int	smaller_num(t_stack stackA);
 
 #endif

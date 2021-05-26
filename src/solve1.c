@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:51:33 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:11:39 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:22:49 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,88 +118,37 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 	while (i < count -3)
 	{
 		if (biggest_num(*stackA, *stackB))
-			push_a(stackA, stackB, 0);
-		else
 		{
-			num = find_num(stackB->head->num, *stackA); // MENOR NÚMERO MAIOR QUE STACKB->HEAD->NUM (NÚMERO Q DEVE FICAR NO TOPO DE STACK A)
-			printf("NUM: %i\n", num);
+			num = get_minimun_value(*stackA); // MENOR NÚMERO DE STACKA
 			while (num != stackA->head->num)
-				rotate_a(stackA, 0);
-			push_a(stackA, stackB, 0);
-		}
-		i++;
-	}	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void	solve_5(t_stack *stackA, t_stack *stackB, int count)
-{
-	static int	i;
-	static int	j;
-	int	num;
-
-	while (i < count - 3)
-	{
-		push_b(stackA, stackB, 0);
-		i++;
-	}
-	solve_3(stackA);
-	num = find_num(stackB->head->num, *stackA);
-	printf("NUM: %i\n", num);
-	while (1)
-	{
-		if (stackB->head->num < stackA->head->num && biggest_num(*stackA, *stackB) == 0)
-		{
-			push_a(stackA, stackB, 0);
-			break ;
-		}
-		if (biggest_num(*stackA, *stackB) == 1)
-		{
-			while (check_order(*stackA, stack_size(*stackA)) == 0)
-				rotate_a(stackA, 1);
-			push_a(stackA, stackB, 0);
-			break ;
-		}
-		if (correct_rotation(num, *stackA, stack_size(*stackA)) == 1)
-			rotate_a(stackA, 0);
-		else
-			reverse_rotate_a(stackA, 0);
-	}
-	num = get_minimun_value(*stackA);
-	if (count == 5 && j == 0)
-	{
-		j++;
-		if (stackA->head->num > stackB->head->num)
-		{
-			printf("%i e %i\n", stackA->head->num, stackB->head->num);
-			while (check_order(*stackA, count - 1) == 0)
 			{
-				if (correct_rotation(num, *stackA, stack_size(*stackA)) == 1)
+				if (correct_rotation(num, *stackA, stack_size(*stackA)))
 					rotate_a(stackA, 0);
 				else
 					reverse_rotate_a(stackA, 0);
 			}
+			push_a(stackA, stackB, 0);
 		}
-		solve_5(stackA, stackB, count);
+		else
+		{
+			num = find_num(stackB->head->num, *stackA); // MENOR NÚMERO MAIOR QUE STACKB->HEAD->NUM (NÚMERO Q DEVE FICAR NO TOPO DE STACK A)
+			while (num != stackA->head->num)
+			{
+				if (correct_rotation(num, *stackA, stack_size(*stackA)))
+					rotate_a(stackA, 0);
+				else
+					reverse_rotate_a(stackA, 0);
+			}
+			push_a(stackA, stackB, 0);
+		}
+		i++;
 	}
-	while (check_order(*stackA, count) == 0)
-		rotate_a(stackA, 0);
+	num = get_minimun_value(*stackA); // MENOR NÚMERO DE STACKA
+	while (num != stackA->head->num)
+	{
+		if (correct_rotation(num, *stackA, stack_size(*stackA)))
+			rotate_a(stackA, 0);
+		else
+			reverse_rotate_a(stackA, 0);
+	}	
 }
-*/

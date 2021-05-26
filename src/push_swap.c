@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 12:15:57 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:17:26 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,6 @@ int	check_order(t_stack stackA, int count)
 	if (i == count - 1)
 		return (1);
 	return (0);
-}
-
-int	smaller_num(t_stack stackA)
-{
-	int	num;
-
-	num = stackA.head->next->num;
-	while (stackA.head)
-	{
-		if (stackA.head->num < num)
-			return (0);
-		stackA.head = stackA.head->next;
-	}
-	return (1);
 }
 
 int	stack_size(t_stack stack)
