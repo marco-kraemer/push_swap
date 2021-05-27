@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:51:33 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:37:29 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 08:48:39 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	get_minimun_value(t_stack stackA)
 {
 	int	ret;
 
-	ret = 2147483647;
+	ret = MAX_INT;
 	while (stackA.head)
 	{
 		if (stackA.head->num < ret)
@@ -98,7 +98,7 @@ int	find_num(int num, t_stack stackA)
 	// PEGAR NÚMERO MAIOR MAIS PROXIMO DE NUM
 	int	ret;
 
-	ret = 2147483647;
+	ret = MAX_INT;
 	while (stackA.head)
 	{
 		if (stackA.head->num > num && stackA.head->num < ret)

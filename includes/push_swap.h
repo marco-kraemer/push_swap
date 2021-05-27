@@ -2,7 +2,10 @@
 # define CUB3D_H
 # include <stdio.h>
 # include <unistd.h>
-#include <stdlib.h>
+# include <stdlib.h>
+
+# define	MAX_INT	2147483647
+# define	MIN_INT	-2147483648
 
 typedef	struct s_node {
 	int		num;
