@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 09:01:01 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 09:24:31 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,12 +186,36 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_else(stackA, stackB, count / 11);
 }
 
+void	check_duplicates(t_stack stack)
+{
+	int	i;
+	t_stack	tmp;
+
+	i = 0;
+	tmp = stack;
+	while (tmp.head)
+	{
+		stack.head = tmp.head;
+		i = stack.head->num;
+		while (stack.head->next)
+		{
+			stack.head = stack.head->next;
+			if (stack.head->num == i)
+				exit (1);
+		}
+		tmp.head = tmp.head->next;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
 	t_stack	stackB;
 
+	if (argc < 2)
+		exit (1);
 	create_stack(&stackA, argc, argv);
+	check_duplicates(stackA);
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);

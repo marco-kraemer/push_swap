@@ -6,13 +6,13 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:35:37 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 09:00:41 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 09:17:24 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	conversion(const char *nptr, int i, int value)
+int	conversion(const char *nptr, int i, long long value)
 {
 	while (nptr[i])
 	{
@@ -21,6 +21,8 @@ int	conversion(const char *nptr, int i, int value)
 			exit (0);
 		i++;
 	}
+	if (value > MAX_INT || value < MIN_INT)
+		exit (0);
 	return (value);
 }
 
