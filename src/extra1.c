@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:37:28 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 11:06:21 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,16 @@ int	find_num(int num, t_stack stackA)
 		stackA.head = stackA.head->next;
 	}
 	return (ret);
+}
+
+void	make_rotation(int num, t_stack *stackA, t_stack *stackB)
+{
+	while (num != stackA->head->num)
+	{
+		if (correct_rotation(num, *stackA, stack_size(*stackA)))
+			rotate_a(stackA, 0);
+		else
+			reverse_rotate_a(stackA, 0);
+	}
+	push_a(stackA, stackB, 0);
 }

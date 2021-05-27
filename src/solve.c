@@ -6,18 +6,11 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:49:26 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 11:06:22 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	solve_2(t_stack *stackA, int count)
-{
-	if (check_order(*stackA, count))
-		return ;
-	swap_a(stackA, 0);
-}
 
 void	solve_3(t_stack *stackA)
 {
@@ -45,48 +38,8 @@ void	solve_3(t_stack *stackA)
 		reverse_rotate_a(stackA, 0);
 }
 
-void	solve_5(t_stack *stackA, t_stack *stackB, int count)
+void	solve_5_check_order(int num, t_stack *stackA)
 {
-	int	i;
-	int	num;
-
-	i = 0;
-	while (i < count - 3)
-	{
-		push_b(stackA, stackB, 0);
-		i++;
-	}
-	solve_3(stackA);
-	i = 0;
-	while (i < count -3)
-	{
-		if (biggest_num(*stackA, *stackB))
-		{
-			num = get_minimun_value(*stackA);
-			while (num != stackA->head->num)
-			{
-				if (correct_rotation(num, *stackA, stack_size(*stackA)))
-					rotate_a(stackA, 0);
-				else
-					reverse_rotate_a(stackA, 0);
-			}
-			push_a(stackA, stackB, 0);
-		}
-		else
-		{
-			num = find_num(stackB->head->num, *stackA);
-			while (num != stackA->head->num)
-			{
-				if (correct_rotation(num, *stackA, stack_size(*stackA)))
-					rotate_a(stackA, 0);
-				else
-					reverse_rotate_a(stackA, 0);
-			}
-			push_a(stackA, stackB, 0);
-		}
-		i++;
-	}
-	num = get_minimun_value(*stackA);
 	while (num != stackA->head->num)
 	{
 		if (correct_rotation(num, *stackA, stack_size(*stackA)))
@@ -94,6 +47,33 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 		else
 			reverse_rotate_a(stackA, 0);
 	}	
+}
+
+void	solve_5(t_stack *stackA, t_stack *stackB, int count)
+{
+	int	i;
+	int	num;
+
+	i = 0;
+	while (i++ < count - 3)
+		push_b(stackA, stackB, 0);
+	solve_3(stackA);
+	i = 0;
+	while (i++ < count -3)
+	{
+		if (biggest_num(*stackA, *stackB))
+		{
+			num = get_minimun_value(*stackA);
+			make_rotation(num, stackA, stackB);
+		}
+		else
+		{
+			num = find_num(stackB->head->num, *stackA);
+			make_rotation(num, stackA, stackB);
+		}
+	}
+	num = get_minimun_value(*stackA);
+	solve_5_check_order(num, stackA);
 }
 
 void	solve_else2(int num, t_stack *stackA, t_stack *stackB)
@@ -123,7 +103,7 @@ void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
 			num = find_next_num(*stackA, chunk, chunk_size);
 			if (num > MAX_INT)
 				break ;
-			solve_else2( num, stackA, stackB);
+			solve_else2(num, stackA, stackB);
 			i++;
 		}
 		free (chunk);

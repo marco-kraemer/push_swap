@@ -6,11 +6,18 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:40:57 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:50:01 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	solve_2(t_stack *stackA, int count)
+{
+	if (check_order(*stackA, count))
+		return ;
+	swap_a(stackA, 0);
+}
 
 int	check_order(t_stack stackA, int count)
 {

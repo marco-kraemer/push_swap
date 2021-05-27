@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:43:53 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 11:06:51 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	check_duplicates(t_stack stack)
 
 void	free_stack(t_stack *stackA)
 {
-	printf("\n\n");
 	while (stackA->head)
 	{
-		printf("%i\n", stackA->head->num);
 		free(stackA->head);
 		stackA->head = stackA->head->next;
 	}

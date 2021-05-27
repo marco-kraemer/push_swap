@@ -40,6 +40,7 @@ void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size);
 void	free_stack(t_stack *stackA);
 
 void	move_biggest_top(t_stack *stack);
+void	make_rotation(int num, t_stack *stackA, t_stack *stackB);
 
 long long int	find_next_num(t_stack stackA, int *chunk, int chunk_size);
 long long int	ft_atoi(const char *nptr);
