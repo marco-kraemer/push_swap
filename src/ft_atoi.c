@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:35:37 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:32:06 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 09:00:41 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	conversion(const char *nptr, int i, int value)
 {
-	while (nptr[i] > 47 && nptr[i] < 58)
+	while (nptr[i])
 	{
 		value = value * 10 + (nptr[i] - '0');
+		if (nptr[i] <= 47 || nptr[i] >= 58)
+			exit (0);
 		i++;
 	}
 	return (value);

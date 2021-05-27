@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 08:51:51 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 09:01:01 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ int	*get_chunk(t_stack stack, int chunk_size)
 {
 	int		*chunk;
 	int		num;
-	int		old_num;
+	long long int		old_num;
 	int		i;
 	t_stack	tmp;
 
 	tmp = stack;
 	i = 0;
 	chunk = malloc(10 * sizeof(int));
-	old_num = 0;
+	old_num = MIN_INT - 1;
 	while (i <= chunk_size)
 	{
 		tmp = stack;
