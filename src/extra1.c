@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra.c                                            :+:      :+:    :+:   */
+/*   extra1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:26:29 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:37:28 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	get_minimun_value(t_stack stackA)
 
 int	find_num(int num, t_stack stackA)
 {
-	// PEGAR NÚMERO MAIOR MAIS PROXIMO DE NUM
 	int	ret;
 
 	ret = MAX_INT;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file2.c                                            :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:25:40 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:49:26 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 	{
 		if (biggest_num(*stackA, *stackB))
 		{
-			num = get_minimun_value(*stackA); // MENOR NÚMERO DE STACKA
+			num = get_minimun_value(*stackA);
 			while (num != stackA->head->num)
 			{
 				if (correct_rotation(num, *stackA, stack_size(*stackA)))
@@ -74,7 +74,7 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 		}
 		else
 		{
-			num = find_num(stackB->head->num, *stackA); // MENOR NÚMERO MAIOR QUE STACKB->HEAD->NUM (NÚMERO Q DEVE FICAR NO TOPO DE STACK A)
+			num = find_num(stackB->head->num, *stackA);
 			while (num != stackA->head->num)
 			{
 				if (correct_rotation(num, *stackA, stack_size(*stackA)))
@@ -86,7 +86,7 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 		}
 		i++;
 	}
-	num = get_minimun_value(*stackA); // MENOR NÚMERO DE STACKA
+	num = get_minimun_value(*stackA);
 	while (num != stackA->head->num)
 	{
 		if (correct_rotation(num, *stackA, stack_size(*stackA)))
@@ -96,13 +96,24 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count)
 	}	
 }
 
+void	solve_else2(int num, t_stack *stackA, t_stack *stackB)
+{
+	while (num != stackA->head->num)
+	{
+		if (correct_rotation(num, *stackA, stack_size(*stackA)) == 1)
+			rotate_a(stackA, 0);
+		else
+			reverse_rotate_a(stackA, 0);
+	}
+	push_b(stackA, stackB, 0);
+}
+
 void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
 {
-	int			*chunk;
-	long long int		num;
-	static int	i;
+	int				*chunk;
+	static int		i;
+	long long int	num;
 
-	i = 0;
 	while (stack_size(*stackA) != 0)
 	{
 		chunk = get_chunk(*stackA, chunk_size);
@@ -112,14 +123,7 @@ void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
 			num = find_next_num(*stackA, chunk, chunk_size);
 			if (num > MAX_INT)
 				break ;
-			while (num != stackA->head->num)
-			{
-				if (correct_rotation(num, *stackA, stack_size(*stackA)) == 1)
-					rotate_a(stackA, 0);
-				else
-					reverse_rotate_a(stackA, 0);
-			}
-			push_b(stackA, stackB, 0);
+			solve_else2( num, stackA, stackB);
 			i++;
 		}
 		free (chunk);

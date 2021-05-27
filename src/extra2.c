@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file4.c                                            :+:      :+:    :+:   */
+/*   extra2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:27:11 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:40:27 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	stack_size(t_stack stack)
 
 int	*get_chunk(t_stack stack, int chunk_size)
 {
-	int		*chunk;
-	int		num;
-	long long int		old_num;
-	int		i;
-	t_stack	tmp;
+	int				*chunk;
+	int				num;
+	int				i;
+	long long int	old_num;
+	t_stack			tmp;
 
 	tmp = stack;
 	i = 0;
