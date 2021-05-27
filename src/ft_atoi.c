@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:35:37 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 09:51:20 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:05:56 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long long int	conversion(const char *nptr, int i, long long value)
 	{
 		value = value * 10 + (nptr[i] - '0');
 		if (nptr[i] <= 47 || nptr[i] >= 58)
-			exit (0);
+			return (2147483648);
 		i++;
 	}
 	return (value);

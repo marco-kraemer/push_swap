@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:04:17 by maraurel         ###   ########.fr       */
+/*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
+/*   Updated: 2021/05/27 10:30:31 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 
 int	check_order(t_stack stackA, int count)
 {
@@ -33,145 +34,6 @@ int	check_order(t_stack stackA, int count)
 	return (0);
 }
 
-int	stack_size(t_stack stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack.head)
-	{
-		stack.head = stack.head->next;
-		i++;
-	}
-	return (i);
-}
-
-int	*get_chunk(t_stack stack, int chunk_size)
-{
-	int		*chunk;
-	int		num;
-	long long int		old_num;
-	int		i;
-	t_stack	tmp;
-
-	tmp = stack;
-	i = 0;
-	chunk = malloc(10 * sizeof(int));
-	old_num = MIN_INT - 1;
-	while (i <= chunk_size)
-	{
-		tmp = stack;
-		num = MAX_INT;
-		while (tmp.head)
-		{
-			if (tmp.head->num < num && tmp.head->num > old_num)
-				num = tmp.head->num;
-			tmp.head = tmp.head->next;
-		}
-		old_num = num;
-		*(chunk + i) = num;
-		i++;
-	}
-	return (chunk);
-}
-
-int	correct_rotation(int num, t_stack stackB, int stack_size)
-{
-	int	dist_start;
-	int	dist_end;
-
-	dist_start = 0;
-	while (stackB.head)
-	{
-		if (stackB.head->num == num)
-			break ;
-		dist_start++;
-		stackB.head = stackB.head->next;
-	}
-	dist_end = dist_start - stack_size;
-	if (dist_end < 0)
-		dist_end = dist_end * (-1);
-	if (dist_start < dist_end)
-		return (1);
-	return (0);
-}
-
-void	move_biggest_top(t_stack *stack)
-{
-	int		num;
-	t_stack	tmp;
-
-	tmp = *stack;
-	num = tmp.head->num;
-	while (tmp.head)
-	{
-		if (tmp.head->num > num)
-			num = tmp.head->num;
-		tmp.head = tmp.head->next;
-	}
-	while (stack->head->num != num)
-	{
-		if (correct_rotation(num, *stack, stack_size(*stack)) == 1)
-			rotate_b(stack, 0);
-		else
-			reverse_rotate_b(stack, 0);
-	}
-}
-
-long long int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
-{
-	int	i;
-
-	i = 0;
-	while (stackA.head)
-	{
-		i = 0;
-		while (i < chunk_size)
-		{
-			if (stackA.head->num == *(chunk + i))
-				return (*(chunk + i));
-			i++;
-		}
-		stackA.head = stackA.head->next;
-	}
-	return (2147483648);
-}
-
-void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
-{
-	int			*chunk;
-	long long int		num;
-	static int	i;
-
-	i = 0;
-	while (stack_size(*stackA) != 0)
-	{
-		chunk = get_chunk(*stackA, chunk_size);
-		i = 0;
-		while (i < chunk_size)
-		{
-			num = find_next_num(*stackA, chunk, chunk_size);
-			if (num > MAX_INT)
-				break ;
-			while (num != stackA->head->num)
-			{
-				if (correct_rotation(num, *stackA, stack_size(*stackA)) == 1)
-					rotate_a(stackA, 0);
-				else
-					reverse_rotate_a(stackA, 0);
-			}
-			push_b(stackA, stackB, 0);
-			i++;
-		}
-		free (chunk);
-	}
-	while (stackB->head)
-	{
-		move_biggest_top(stackB);
-		push_a(stackA, stackB, 0);
-	}
-}
-
 void	solve(int count, t_stack *stackA, t_stack *stackB)
 {
 	if (count == 2)
@@ -186,37 +48,6 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_else(stackA, stackB, count / 11);
 }
 
-int	check_duplicates(t_stack stack)
-{
-	int	i;
-	t_stack	tmp;
-
-	i = 0;
-	tmp = stack;
-	while (tmp.head)
-	{
-		stack.head = tmp.head;
-		i = stack.head->num;
-		while (stack.head->next)
-		{
-			stack.head = stack.head->next;
-			if (stack.head->num == i)
-				return (1);
-		}
-		tmp.head = tmp.head->next;
-	}
-	return (0);
-}
-
-void	free_stack(t_stack *stackA)
-{
-	while (stackA->head)
-	{
-		free(stackA->head);
-		stackA->head = stackA->head->next;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
@@ -225,6 +56,11 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		exit (1);
 	create_stack(&stackA, argc, argv);
+	if (check_order(stackA, stack_size(stackA)))
+	{
+		free_stack(&stackA);
+		exit (1);
+	}
 	if (check_duplicates(stackA))
 	{
 		free_stack(&stackA);

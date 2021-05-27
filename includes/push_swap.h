@@ -31,18 +31,29 @@ void	rotate_ab(t_stack *stackA, t_stack *stackB);
 void	reverse_rotate_a(t_stack *stack, int rule);
 void	reverse_rotate_b(t_stack *stack, int rule);
 void	reverse_rotate_ab(t_stack *stackA, t_stack *stackB);
-void	free_stack(t_stack *stackA);
 
 void	solve_2(t_stack *stackA, int count);
-int	compare_3(t_node *node);
 void	solve_3(t_stack *stackA);
-int	biggest_num(t_stack stackA, t_stack stackB);
 void	solve_5(t_stack *stackA, t_stack *stackB, int count);
-int	check_order(t_stack stackA, int count);
+void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size);
 
+void	free_stack(t_stack *stackA);
+
+void	move_biggest_top(t_stack *stack);
+
+long long int	find_next_num(t_stack stackA, int *chunk, int chunk_size);
+long long int	ft_atoi(const char *nptr);
+
+int	*get_chunk(t_stack stack, int chunk_size);
+
+int		get_minimun_value(t_stack stackA);
+int		find_num(int num, t_stack stackA);
+int		compare_3(t_node *node);
+int		biggest_num(t_stack stackA, t_stack stackB);
+int		check_order(t_stack stackA, int count);
+int		check_duplicates(t_stack stack);
 int		correct_rotation(int num, t_stack stackB, int stack_size);
 int		stack_size(t_stack stack);
-long long int		ft_atoi(const char *nptr);
-int	smaller_num(t_stack stackA);
+int		smaller_num(t_stack stackA);
 
 #endif
