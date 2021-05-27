@@ -31,6 +31,7 @@ void	rotate_ab(t_stack *stackA, t_stack *stackB);
 void	reverse_rotate_a(t_stack *stack, int rule);
 void	reverse_rotate_b(t_stack *stack, int rule);
 void	reverse_rotate_ab(t_stack *stackA, t_stack *stackB);
+void	free_stack(t_stack *stackA);
 
 void	solve_2(t_stack *stackA, int count);
 int	compare_3(t_node *node);
@@ -41,7 +42,7 @@ int	check_order(t_stack stackA, int count);
 
 int		correct_rotation(int num, t_stack stackB, int stack_size);
 int		stack_size(t_stack stack);
-int		ft_atoi(const char *nptr);
+long long int		ft_atoi(const char *nptr);
 int	smaller_num(t_stack stackA);
 
 #endif

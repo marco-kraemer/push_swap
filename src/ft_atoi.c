@@ -6,13 +6,13 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 18:35:37 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 09:17:24 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 09:51:20 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	conversion(const char *nptr, int i, long long value)
+long long int	conversion(const char *nptr, int i, long long value)
 {
 	while (nptr[i])
 	{
@@ -21,12 +21,10 @@ int	conversion(const char *nptr, int i, long long value)
 			exit (0);
 		i++;
 	}
-	if (value > MAX_INT || value < MIN_INT)
-		exit (0);
 	return (value);
 }
 
-int	ft_atoi(const char *nptr)
+long long int	ft_atoi(const char *nptr)
 {
 	size_t	i;
 	size_t	j;

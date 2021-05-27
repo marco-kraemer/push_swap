@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:19:08 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/26 14:32:31 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:02:32 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static t_node	*create_first_node(t_stack *stackA, char *argv)
 {
 	t_node	*newNode;
 
+	if (ft_atoi(&argv[0]) < MIN_INT || ft_atoi(&argv[0]) > MAX_INT)
+		exit (0);
 	newNode = malloc(sizeof(t_node));
 	newNode->num = ft_atoi(&argv[0]);
 	newNode->next = NULL;
@@ -28,6 +30,8 @@ static t_node	*create_nodes(char *argv)
 {
 	t_node	*newNode;
 
+	if (ft_atoi(&argv[0]) < MIN_INT || ft_atoi(&argv[0]) > MAX_INT)
+		return (NULL);
 	newNode = malloc(sizeof(t_node));
 	newNode->num = ft_atoi(&argv[0]);
 	newNode->next = NULL;
@@ -52,6 +56,12 @@ void	create_stack(t_stack *stackA, int argc, char *argv[])
 	while (i < argc)
 	{
 		new = create_nodes(argv[i]);
+		if (new == NULL)
+		{
+			old->next = NULL;
+			free_stack(stackA);
+			exit (0);
+		}
 		add_node_end(stackA, old, new);
 		old = new;
 		i++;

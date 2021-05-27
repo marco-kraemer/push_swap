@@ -6,7 +6,7 @@
 /*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 09:24:31 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/05/27 10:04:17 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_else(stackA, stackB, count / 11);
 }
 
-void	check_duplicates(t_stack stack)
+int	check_duplicates(t_stack stack)
 {
 	int	i;
 	t_stack	tmp;
@@ -201,9 +201,19 @@ void	check_duplicates(t_stack stack)
 		{
 			stack.head = stack.head->next;
 			if (stack.head->num == i)
-				exit (1);
+				return (1);
 		}
 		tmp.head = tmp.head->next;
+	}
+	return (0);
+}
+
+void	free_stack(t_stack *stackA)
+{
+	while (stackA->head)
+	{
+		free(stackA->head);
+		stackA->head = stackA->head->next;
 	}
 }
 
@@ -215,17 +225,15 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		exit (1);
 	create_stack(&stackA, argc, argv);
-	check_duplicates(stackA);
+	if (check_duplicates(stackA))
+	{
+		free_stack(&stackA);
+		exit (0);
+	}
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
-	printf("\nFINAL FORMATION:\n");
-	while (stackA.head)
-	{
-		printf("%i\n", stackA.head->num);
-		free(stackA.head);
-		stackA.head = stackA.head->next;
-	}
+	free_stack(&stackA);
 	free(stackB.head);
 	return (1);
 }
