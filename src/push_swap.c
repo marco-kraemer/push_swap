@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:50:01 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/06/10 13:59:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,17 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
 	t_stack	stackB;
+	int		i;
 
-	if (argc < 2)
+	if (argc == 2)
+	{
+		argv = ft_split(argv[1], ' ');
+		i = 0;
+		while (argv[i])
+			i++;
+		argc = i;
+	}
+	else if (argc < 2)
 		exit (1);
 	create_stack(&stackA, argc, argv);
 	if (check_order(stackA, stack_size(stackA)))
