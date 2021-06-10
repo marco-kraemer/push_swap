@@ -6,12 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/10 14:30:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 14:31:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-//teste
+
 void	solve_2(t_stack *stackA, int count)
 {
 	if (check_order(*stackA, count))
