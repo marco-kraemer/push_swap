@@ -57,4 +57,5 @@ int		correct_rotation(int num, t_stack stackB, int stack_size);
 int		stack_size(t_stack stack);
 int		smaller_num(t_stack stackA);
 
+char	**ft_split(char const *s, char c);
 #endif
