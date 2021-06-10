@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
+//teste
 void	solve_2(t_stack *stackA, int count)
 {
 	if (check_order(*stackA, count))
