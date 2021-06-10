@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/10 14:31:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/10 14:35:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,13 @@ int	main(int argc, char *argv[])
 			i++;
 		argc = i;
 	}
-	else if (argc < 2)
+	if (argc < 2)
 		exit (1);
 	create_stack(&stackA, argc, argv);
-	if (check_order(stackA, stack_size(stackA)))
+	if (check_duplicates(stackA) || check_order(stackA, stack_size(stackA)))
 	{
 		free_stack(&stackA);
-		exit (1);
-	}
-	if (check_duplicates(stackA))
-	{
-		free_stack(&stackA);
-		exit (0);
+		exit (EXIT_SUCCESS);
 	}
 	stackB.head = NULL;
 	stackB.tail = NULL;
