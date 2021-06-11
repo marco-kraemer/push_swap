@@ -2,7 +2,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+#include <stdio.h>
 
 # define	MAX_INT	2147483647
 # define	MIN_INT	-2147483648
@@ -38,7 +38,7 @@ void	solve_5(t_stack *stackA, t_stack *stackB, int count);
 void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size);
 void	solve_5_check_order(int num, t_stack *stackA);
 
-void	free_stack(t_stack *stackA);
+void	free_stack(t_stack *stackA, int rule);
 
 void	move_biggest_top(t_stack *stack);
 void	make_rotation(int num, t_stack *stackA, t_stack *stackB);

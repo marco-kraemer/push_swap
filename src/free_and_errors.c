@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 11:54:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 14:06:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ int	check_duplicates(t_stack stack)
 	return (0);
 }
 
-void	free_stack(t_stack *stackA)
+void	free_stack(t_stack *stackA, int rule)
 {
 	while (stackA->head)
 	{
 		free(stackA->head);
 		stackA->head = stackA->head->next;
 	}
+	if (rule == 1)
+		exit (EXIT_SUCCESS);
 }

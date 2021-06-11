@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 12:41:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 14:06:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 		solve_else(stackA, stackB, count / 11);
 }
 
+void	one_num(char *argv[])
+{
+	int	i;
+
+	i = 0;
+	while (argv[0][i])
+	{
+		if (argv[0][i] < '0' || argv[0][i] > '9')
+		{
+			write(1, "Error\n", 6);
+			break ;
+		}
+		i++;
+	}
+	free(argv[0]);
+	free(argv);
+	exit (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
@@ -69,22 +88,14 @@ int	main(int argc, char *argv[])
 			argc++;
 		argc++;
 	}
-	if (argc <= 2)  // ESCREVER ERROR PRA NOT NUM
-	{
-		free(argv[0]);
-		free(argv);
-		exit (1);
-	}
+	if (argc <= 2)
+		one_num(argv);
 	create_stack(&stackA, argc, argv);
 	if (check_duplicates(stackA) || check_order(stackA, stack_size(stackA)))
-	{
-		free_stack(&stackA);
-		exit (EXIT_SUCCESS);
-	}
+		free_stack(&stackA, 1);
 	stackB.head = NULL;
 	stackB.tail = NULL;
 	solve(argc - 1, &stackA, &stackB);
-	free_stack(&stackA);
+	free_stack(&stackA, 0);
 	free(stackB.head);
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:19:08 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 12:37:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 14:07:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long long int	ft_atoi(const char *nptr)
 			return (2147483648);
 		i++;
 	}
-	return (value);
+	return (value * j);
 }
 
 static t_node	*create_first_node(t_stack *stackA, char *argv)
@@ -91,7 +91,7 @@ void	create_stack(t_stack *stackA, int argc, char *argv[])
 		{
 			write(1, "Error\n", 6);
 			old->next = NULL;
-			free_stack(stackA);
+			free_stack(stackA, 0);
 			exit (0);
 		}
 		add_node_end(stackA, old, new);
