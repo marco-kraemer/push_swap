@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_errors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
+/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 11:06:51 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/06/11 11:54:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	check_duplicates(t_stack stack)
 		{
 			stack.head = stack.head->next;
 			if (stack.head->num == i)
+			{
+				write(1, "Error\n", 6);
 				return (1);
+			}	
 		}
 		tmp.head = tmp.head->next;
 	}

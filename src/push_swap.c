@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 10:45:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 12:41:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,22 @@ int	main(int argc, char *argv[])
 	t_stack	stackA;
 	t_stack	stackB;
 
+	if (argc < 2)
+		exit (EXIT_SUCCESS);
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
 		argc = 0;
 		while (argv[argc])
 			argc++;
+		argc++;
 	}
-	if (argc < 2)
+	if (argc <= 2)  // ESCREVER ERROR PRA NOT NUM
+	{
+		free(argv[0]);
+		free(argv);
 		exit (1);
+	}
 	create_stack(&stackA, argc, argv);
 	if (check_duplicates(stackA) || check_order(stackA, stack_size(stackA)))
 	{
