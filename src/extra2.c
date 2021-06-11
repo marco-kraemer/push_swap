@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
+/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 10:40:27 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/06/11 11:42:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,13 @@ void	move_biggest_top(t_stack *stack)
 	}
 }
 
-long long int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
+void	solve_5_check_order(int num, t_stack *stackA)
 {
-	int	i;
-
-	i = 0;
-	while (stackA.head)
+	while (num != stackA->head->num)
 	{
-		i = 0;
-		while (i < chunk_size)
-		{
-			if (stackA.head->num == *(chunk + i))
-				return (*(chunk + i));
-			i++;
-		}
-		stackA.head = stackA.head->next;
-	}
-	return (2147483648);
+		if (correct_rotation(num, *stackA, stack_size(*stackA)))
+			rotate_a(stackA, 0);
+		else
+			reverse_rotate_a(stackA, 0);
+	}	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
+/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/05/27 11:06:22 by maraurel         ###   ########.fr       */
+/*   Updated: 2021/06/11 11:42:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@ void	solve_3(t_stack *stackA)
 	}
 	if (c == 5)
 		reverse_rotate_a(stackA, 0);
-}
-
-void	solve_5_check_order(int num, t_stack *stackA)
-{
-	while (num != stackA->head->num)
-	{
-		if (correct_rotation(num, *stackA, stack_size(*stackA)))
-			rotate_a(stackA, 0);
-		else
-			reverse_rotate_a(stackA, 0);
-	}	
 }
 
 void	solve_5(t_stack *stackA, t_stack *stackB, int count)
@@ -86,6 +75,25 @@ void	solve_else2(int num, t_stack *stackA, t_stack *stackB)
 			reverse_rotate_a(stackA, 0);
 	}
 	push_b(stackA, stackB, 0);
+}
+
+long long int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
+{
+	int	i;
+
+	i = 0;
+	while (stackA.head)
+	{
+		i = 0;
+		while (i < chunk_size)
+		{
+			if (stackA.head->num == *(chunk + i))
+				return (*(chunk + i));
+			i++;
+		}
+		stackA.head = stackA.head->next;
+	}
+	return (2147483648);
 }
 
 void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
