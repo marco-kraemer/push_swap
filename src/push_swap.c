@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/10 14:35:24 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 10:45:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,13 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
 	t_stack	stackB;
-	int		i;
 
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		i = 0;
-		while (argv[i])
-			i++;
-		argc = i;
+		argc = 0;
+		while (argv[argc])
+			argc++;
 	}
 	if (argc < 2)
 		exit (1);

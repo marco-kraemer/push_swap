@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 14:43:48 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/10 13:51:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/11 10:45:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		countstring(char const *s, char c)
+int	countstring(char const *s, char c)
 {
 	int	i;
 	int	j;
@@ -35,7 +35,7 @@ int		countstring(char const *s, char c)
 	return (i);
 }
 
-int		countchar(char const *s2, char c, int i)
+int	countchar(char const *s2, char c, int i)
 {
 	int	lenght;
 
