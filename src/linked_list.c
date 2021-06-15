@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 11:19:08 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 14:07:06 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/15 11:56:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	create_stack(t_stack *stackA, int argc, char *argv[])
 		old = new;
 		i++;
 	}
+	if (argc == 2)
+		free_stack(stackA, 1);
 	new->next = NULL;
 	stackA->tail = new;
 }
