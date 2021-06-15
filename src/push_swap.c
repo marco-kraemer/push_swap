@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/15 11:14:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/15 11:18:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	one_num(char *argv[])
 	free(argv);
 	exit (1);
 }
-
+//o
 int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
