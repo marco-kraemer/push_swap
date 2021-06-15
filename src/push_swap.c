@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/15 11:19:11 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/15 11:40:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,9 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stackA;
 	t_stack	stackB;
-	printf("%i\n", argc);
-	if (argc < 2)
-		exit (EXIT_SUCCESS);
-	if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		argc = 0;
-		while (argv[argc])
-			argc++;
-		argc++;
-	}
+
 	if (argc <= 2)
-		one_num(argv);
+		exit (EXIT_SUCCESS);
 	create_stack(&stackA, argc, argv);
 	if (check_duplicates(stackA) || check_order(stackA, stack_size(stackA)))
 		free_stack(&stackA, 1);

@@ -6,7 +6,7 @@
 /*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:00:42 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 14:06:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/15 11:46:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ int	check_duplicates(t_stack stack)
 
 void	free_stack(t_stack *stackA, int rule)
 {
+	t_node	*tmp;
+
+	tmp = NULL;
 	while (stackA->head)
 	{
+		tmp = stackA->head->next;
 		free(stackA->head);
-		stackA->head = stackA->head->next;
+		stackA->head = tmp;
 	}
 	if (rule == 1)
 		exit (EXIT_SUCCESS);
