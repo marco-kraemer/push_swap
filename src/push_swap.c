@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
+/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/15 11:58:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 15:25:42 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	solve(int count, t_stack *stackA, t_stack *stackB)
 	else if (count <= 5)
 		solve_5(stackA, stackB, count);
 	else if (count <= 100)
-		solve_else(stackA, stackB, count / 5);
+		solve_else(stackA, stackB, count / 5, count);
 	else
-		solve_else(stackA, stackB, count / 11);
+		solve_else(stackA, stackB, count / 11, count);
 }
 
 void	one_num(char *argv[])

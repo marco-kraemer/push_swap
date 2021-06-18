@@ -34,7 +34,7 @@ void	reverse_rotate_ab(t_stack *stackA, t_stack *stackB);
 void	solve_2(t_stack *stackA, int count);
 void	solve_3(t_stack *stackA);
 void	solve_5(t_stack *stackA, t_stack *stackB, int count);
-void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size);
+void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size, int size);
 void	solve_5_check_order(int num, t_stack *stackA);
 
 void	free_stack(t_stack *stackA, int rule);
@@ -42,7 +42,7 @@ void	free_stack(t_stack *stackA, int rule);
 void	move_biggest_top(t_stack *stack);
 void	make_rotation(int num, t_stack *stackA, t_stack *stackB);
 
-int		*get_chunk(t_stack stack, int chunk_size);
+int		*get_chunk(t_stack stack, int chunk_size, int size);
 int		get_minimun_value(t_stack stackA);
 int		find_num(int num, t_stack stackA);
 int		compare_3(t_node *node);

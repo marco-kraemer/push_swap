@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
+/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 12:32:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 15:24:28 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ long long int	find_next_num(t_stack stackA, int *chunk, int chunk_size)
 	return (2147483648);
 }
 
-void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
+void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size, int size)
 {
 	int				*chunk;
 	static int		i;
@@ -104,7 +104,7 @@ void	solve_else(t_stack *stackA, t_stack *stackB, int chunk_size)
 
 	while (stack_size(*stackA) != 0)
 	{
-		chunk = get_chunk(*stackA, chunk_size);
+		chunk = get_chunk(*stackA, chunk_size, size);
 		i = 0;
 		while (i < chunk_size)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <maraurel@student.42sp>             +#+  +:+       +#+        */
+/*   By: maraurel <maraurel@student.42sp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 10:20:49 by maraurel          #+#    #+#             */
-/*   Updated: 2021/06/11 11:42:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/18 15:24:45 by maraurel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	stack_size(t_stack stack)
 	return (i);
 }
 
-int	*get_chunk(t_stack stack, int chunk_size)
+int	*get_chunk(t_stack stack, int chunk_size, int size)
 {
 	int				*chunk;
 	int				num;
@@ -35,7 +35,7 @@ int	*get_chunk(t_stack stack, int chunk_size)
 
 	tmp = stack;
 	i = 0;
-	chunk = malloc(10 * sizeof(int));
+	chunk = malloc(size * sizeof(int));
 	old_num = MIN_INT - 1;
 	while (i <= chunk_size)
 	{
