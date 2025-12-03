@@ -6,7 +6,7 @@
 #    By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 16:20:10 by msantos2          #+#    #+#              #
-#    Updated: 2025/12/03 16:35:26 by msantos2         ###   ########.fr        #
+#    Updated: 2025/12/03 17:18:14 by msantos2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C libftprintf
-	cp libftprintf/libftprintf.a $(NAME)
+	mv libftprintf/libftprintf.a .
 	$(CC) $(CFLAGS) -o $(NAME) $(SRC) -L. -lftprintf
+	rm -f libftprintf.a
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -41,12 +42,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-run: all
-	./$(NAME)
-
-valgrind: all
-	valgrind ./$(NAME)
 
 git: fclean
 	git add .
