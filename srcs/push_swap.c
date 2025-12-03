@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:31:15 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/03 17:08:54 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:19:48 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ t_list	*get_numbers(char **argv)
 				ft_printf("Error\n");
 				exit (-1);
 			}
+			j++;
 		}
+		i++;
 	}
 	i = 0;
 	while (argv[i])
 	{
-		nbr = ft_atoi(argv[i]);
+		nbr = ft_atoi(argv[i++]);
 		ft_lstadd_back(&stack, ft_lstnew(&nbr));
 	}
 	return (stack);
