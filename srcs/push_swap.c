@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:31:15 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/03 17:31:48 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/04 12:13:33 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-t_stack	*create_stack(int nbr)
+t_stack	*stack_new(int nbr)
 {
 	t_stack	*node;
 
@@ -30,7 +30,7 @@ t_stack	*create_stack(int nbr)
 	return (node);
 }
 
-void	stack_add(t_stack **lst, t_stack *new)
+void	stack_add_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*last;
 
@@ -45,19 +45,40 @@ void	stack_add(t_stack **lst, t_stack *new)
 	last->next = new;
 }
 
-t_stack	*get_numbers(char **argv)
+void	stack_free(t_stack *head)
+{
+	t_stack*	tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
+
+void	stack_print(t_stack *head)
+{
+	while (head)
+	{
+		ft_printf("%i\n", head->nbr);
+		head = head->next;
+	}
+}
+
+t_stack	*get_numbers(char **nbrs)
 {
 	t_stack	*stack;
 	int		i;
 	int		j;
 
 	i = 0;
-	while (argv[i])
+	while (nbrs[i])
 	{
 		j = 0;
-		while (argv[i][j])
+		while (nbrs[i][j])
 		{
-			if (ft_isdigit(!argv[i][j]))
+			if (ft_isdigit(!nbrs[i][j]))
 			{
 				ft_printf("Error\n");
 				exit (-1);
@@ -66,16 +87,15 @@ t_stack	*get_numbers(char **argv)
 		}
 		i++;
 	}
-	i = 1;
+	i = 0;
 	stack = NULL;
-	while (argv[i])
-		stack_add(&stack, create_stack(ft_atoi(argv[i++])));
+	while (nbrs[i])
+		stack_add_back(&stack, stack_new(ft_atoi(nbrs[i++])));
 	return (stack);
 }
 
 int	main(int argc, char **argv)
 {
-	int		i;
 	t_stack	*stack_a;
 
 	if (argc == 1)
@@ -83,12 +103,8 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		exit (-1);
 	}
-	stack_a = get_numbers(argv);
-	i = 0;
-	while (stack_a)
-	{
-		ft_printf("%i\n", stack_a->nbr);
-		stack_a = stack_a->next;
-	}
+	stack_a = get_numbers(argv + 1);
+	stack_print(stack_a);
+	stack_free(stack_a);
 	return (1);
 }
