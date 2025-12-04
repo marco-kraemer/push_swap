@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:31:10 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/04 14:15:33 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:03:35 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_stack
 }	t_stack;
 
 t_stack	*create_stack_a(char **nbrs);
-void	stack_print(t_stack *head);
 void	stack_free(t_stack *head);
 
 void	swap_a(t_stack **head);
