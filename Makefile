@@ -6,7 +6,7 @@
 #    By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 16:20:10 by msantos2          #+#    #+#              #
-#    Updated: 2025/12/03 17:18:14 by msantos2         ###   ########.fr        #
+#    Updated: 2025/12/04 14:26:03 by msantos2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 SRC_DIR = srcs
-SRC =   $(SRC_DIR)/push_swap.c
+SRC =   $(SRC_DIR)/push_swap.c \
+		$(SRC_DIR)/push.c \
+		$(SRC_DIR)/rotate.c \
+		$(SRC_DIR)/rrotate.c \
+		$(SRC_DIR)/stack.c \
+		$(SRC_DIR)/swap.c \
 
 OBJS = $(SRC:.c=.o)
 
