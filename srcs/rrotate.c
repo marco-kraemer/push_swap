@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:10:43 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/04 14:12:09 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/04 14:33:44 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	rrotate(t_stack **head)
 	*head = last;
 }
 
-// rra (reverse rotate a): Shift down all elements of stack a by 1.
-// The last element becomes the first one.
 void	rrotate_a(t_stack **head)
 {
 	if (!*head || !(*head)->next)
@@ -40,8 +38,6 @@ void	rrotate_a(t_stack **head)
 	ft_printf("rra\n");
 }
 
-// rrb (reverse rotate b): Shift down all elements of stack b by 1.
-// The last element becomes the first one.
 void	rrotate_b(t_stack **head)
 {
 	if (!*head || !(*head)->next)
@@ -50,7 +46,6 @@ void	rrotate_b(t_stack **head)
 	ft_printf("rrb\n");
 }
 
-// rrr : rra and rrb at the same time.
 void	rrotate_a_b(t_stack **head_a, t_stack **head_b)
 {
 	if (!*head_a || !(*head_a)->next)

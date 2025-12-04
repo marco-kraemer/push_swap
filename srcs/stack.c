@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:08:59 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/04 14:13:20 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/04 14:35:18 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	stack_free(t_stack *head)
 {
-	t_stack*	tmp;
+	t_stack	*tmp;
 
 	while (head != NULL)
 	{
