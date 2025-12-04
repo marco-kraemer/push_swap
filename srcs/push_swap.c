@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:31:15 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/04 12:13:33 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/04 13:05:37 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_stack	*get_numbers(char **nbrs)
 		j = 0;
 		while (nbrs[i][j])
 		{
-			if (ft_isdigit(!nbrs[i][j]))
+			if (!ft_isdigit(nbrs[i][j]))
 			{
 				ft_printf("Error\n");
 				exit (-1);
@@ -94,6 +94,79 @@ t_stack	*get_numbers(char **nbrs)
 	return (stack);
 }
 
+int	stack_size(t_stack *head)
+{
+	int	count;
+
+	count = 0;
+	while (head)
+	{
+		head = head->next;
+		count++;
+	}
+	return (count);
+}
+
+void	swap(t_stack ** head)
+{
+	t_stack	*first;
+	t_stack	*second;
+
+	first = *head;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*head = second;
+}
+
+// sa (swap a): Swap the first 2 elements at the top of stack a.
+// Do nothing if there is only one element or none.
+void swap_a(t_stack **head)
+{
+	if (!*head || !(*head)->next)
+		return ;
+	swap(head);
+	ft_printf("sa\n");
+}   
+
+
+// sb (swap b): Swap the first 2 elements at the top of stack b.
+// Do nothing if there is only one element or none.
+void swap_b(t_stack **head)
+{
+	if (!*head || !(*head)->next)
+		return ;
+	swap(head);
+	ft_printf("sb\n");
+}  
+
+// ss : sa and sb at the same time.
+void swap_a_b(t_stack **head_a, t_stack **head_b)
+{
+	if (!*head_a || !(*head_a)->next)
+		return ;
+	else if (!*head_b || !(*head_b)->next)
+		return ;
+	swap(head_a);
+	swap(head_b);
+	ft_printf("ss\n");
+}
+
+// pa (push a): Take the first element at the top of b and put it at the top of a.
+// Do nothing if b is empty.
+// pb (push b): Take the first element at the top of a and put it at the top of b.
+// Do nothing if a is empty.
+// ra (rotate a): Shift up all elements of stack a by 1.
+// The first element becomes the last one.
+// rb (rotate b): Shift up all elements of stack b by 1.
+// The first element becomes the last one.
+// rr : ra and rb at the same time.
+// rra (reverse rotate a): Shift down all elements of stack a by 1.
+// The last element becomes the first one.
+// rrb (reverse rotate b): Shift down all elements of stack b by 1.
+// The last element becomes the first one.
+// rrr : rra and rrb at the same time.
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -104,6 +177,7 @@ int	main(int argc, char **argv)
 		exit (-1);
 	}
 	stack_a = get_numbers(argv + 1);
+	swap_a(&stack_a);
 	stack_print(stack_a);
 	stack_free(stack_a);
 	return (1);
