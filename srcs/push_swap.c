@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:31:15 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/04 13:05:37 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/04 13:25:13 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	stack_print(t_stack *head)
 	}
 }
 
-t_stack	*get_numbers(char **nbrs)
+t_stack	*create_stack_a(char **nbrs)
 {
 	t_stack	*stack;
 	int		i;
@@ -154,8 +154,24 @@ void swap_a_b(t_stack **head_a, t_stack **head_b)
 
 // pa (push a): Take the first element at the top of b and put it at the top of a.
 // Do nothing if b is empty.
+
 // pb (push b): Take the first element at the top of a and put it at the top of b.
 // Do nothing if a is empty.
+void	push_b(t_stack **head_a, t_stack **head_b)
+{
+	t_stack	*first_a;
+	t_stack	*first_b;
+
+	if (!*head_a)
+		return ;
+	first_a = *head_a;
+	first_b = *head_b;
+	*head_a = first_a->next;
+	first_a->next = first_b;
+	*head_b = first_a;
+	ft_printf("pb\n");
+}
+
 // ra (rotate a): Shift up all elements of stack a by 1.
 // The first element becomes the last one.
 // rb (rotate b): Shift up all elements of stack b by 1.
@@ -170,15 +186,24 @@ void swap_a_b(t_stack **head_a, t_stack **head_b)
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (argc == 1)
 	{
 		ft_printf("Error\n");
 		exit (-1);
 	}
-	stack_a = get_numbers(argv + 1);
-	swap_a(&stack_a);
+	stack_a = create_stack_a(argv + 1);
+	stack_b = NULL;
+	// swap_a(&stack_a);
+	// stack_print(stack_a);
+	push_b(&stack_a, &stack_b);
+	push_b(&stack_a, &stack_b);
+	ft_printf("Stack A:\n");
 	stack_print(stack_a);
+	ft_printf("Stack B:\n");
+	stack_print(stack_b);
 	stack_free(stack_a);
+	stack_free(stack_b);
 	return (1);
 }
