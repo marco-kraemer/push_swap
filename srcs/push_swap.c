@@ -6,7 +6,7 @@
 /*   By: msantos2 <msantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:31:15 by msantos2          #+#    #+#             */
-/*   Updated: 2025/12/04 15:45:14 by msantos2         ###   ########.fr       */
+/*   Updated: 2025/12/06 14:55:39 by msantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	stack_print(t_stack *stack_a, t_stack *stack_b)
 
 int	check(t_stack *stack, size_t len)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (stack->next)
@@ -84,57 +84,70 @@ int	check(t_stack *stack, size_t len)
 
 int	check_stack(t_stack *stack)
 {
-	int	count;
-
-	count = 0;
 	while (stack->next)
 	{
 		if (stack->nbr > stack->next->nbr)
 			return (0);
 		stack = stack->next;
-		count++;
 	}
 	return (1);
 }
 
-int	check_rotate(t_stack *stack)
-{
-	int	count;
+// int	check_rotate(t_stack *stack)
+// {
+// 	int	count;
 
-	count = 0;
-	while (stack->next)
+// 	count = 0;
+// 	while (stack->next)
+// 	{
+// 		if (stack->nbr > stack->next->nbr)
+// 			count++;
+// 		stack = stack->next;
+// 	}
+// 	if (count < len)
+// 		return (0);
+// 	return (1);
+// }
+
+int	get_min(t_stack *stack)
+{
+	int	min;
+
+	min = stack->nbr;
+	while (stack)
 	{
-		if (stack->nbr > stack->next->nbr)
-			count++;
+		if (stack->nbr < min)
+			min = stack->nbr;
 		stack = stack->next;
 	}
-	if (count < len)
-		return (0);
-	return (1);
+	return (min);
 }
 
-void	push_swap(t_stack **stack_a, t_stack **stack_b, size_t len)
+void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
+	int		min;
 
 	temp = *stack_a;
-	while (!check(stack_a, len))
+	while (check_stack(*stack_a) == 0)
 	{
-		if ((*stack_a)->nbr > (*stack_b)->next->nbr)
-			swap_a(stack_a);
-		else
+		min = get_min(*stack_a);
+		if ((*stack_a)->nbr > (*stack_a)->next->nbr)
 		{
-			if (check_rotate(stack_a))
-			{
-
-			}
+			swap_a(stack_a);
+		}
+		else if ((*stack_a)->nbr == min)
+		{
 			push_b(stack_a, stack_b);
 		}
-		if (check_stack(stack_a))
-		{
-
-		}
 		else
+		{
+			rotate_a(stack_a);
+		}
+	}
+	while (*stack_b)
+	{
+		push_a(stack_a, stack_b);
 	}
 }
 
@@ -150,8 +163,8 @@ int	main(int argc, char **argv)
 	}
 	stack_a = create_stack_a(argv + 1);
 	stack_b = NULL;
+	push_swap(&stack_a, &stack_b);
 	stack_print(stack_a, stack_b);
-	push_swap(&stack_a, &stack_b, argc - 1);
 	stack_free(stack_a);
 	stack_free(stack_b);
 	return (1);
